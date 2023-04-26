@@ -15,7 +15,7 @@ public class Preferences {
 
     private static PreferenceOption[] options = {
         new PreferenceOption("Use Dark Theme", "false", PreferenceOption.BOOLEAN),
-        new PreferenceOption("American Style Components", "true", PreferenceOption.BOOLEAN),
+        new PreferenceOption("European Style Components", "true", PreferenceOption.BOOLEAN),
         new PreferenceOption("Wrap in Figure", "true", PreferenceOption.BOOLEAN),
         new PreferenceOption("Use [h] annotation", "true", PreferenceOption.BOOLEAN),
         new PreferenceOption("Smaller Path Components", "false", PreferenceOption.BOOLEAN)
@@ -103,7 +103,13 @@ public class Preferences {
 
     public static void exportPreferences() {
         try {
-            BufferedWriter w = new BufferedWriter(new FileWriter(new File("preferences.config")));
+            File config  = new File(System.getProperty("user.home") + (System.getProperty("os.name").toLowerCase().contains("win") ? "/AppData/Roaming/circuittikztool/config" :  "/.config/circuittikztool/config"));
+            File parent = config.getParentFile();
+            if (parent != null && !parent.exists()){
+              parent.mkdirs();
+            }
+
+            BufferedWriter w = new BufferedWriter(new FileWriter(config));
             for (int a = 0; a < options.length; a++) {
                 w.write(options[a].toString());
             }
@@ -115,7 +121,8 @@ public class Preferences {
 
     public static void importPreferences() {
         try {
-            String data = new String(Files.readAllBytes(new File("preferences.config").toPath()));
+          File config  = new File(System.getProperty("user.home") + (System.getProperty("os.name").toLowerCase().contains("win") ? "/AppData/Roaming/circuittikztool/config" :  "/.config/circuittikztool/config"));
+            String data = new String(Files.readAllBytes(config.toPath()));
             String[] splitData = data.split("\n");
 
             //now we track down each option and see how it's been configured

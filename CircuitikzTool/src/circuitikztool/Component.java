@@ -51,7 +51,6 @@ public class Component {
                         "non-path components" are components that have any number of terminals but only a single position variable (transistors, nodes, etc)
                         this distinction is important because there are two constructors one which is for path components and one that is not.
      */
-    //path components
     final static int PATH = 0;
     final static int RESISTOR = 1;
     final static int CAPACITOR = 2;
@@ -245,7 +244,7 @@ public class Component {
                 Label = "Wire";
                 break;
             case RESISTOR:
-                latexParameters = "to[R,l=$R$]";
+                latexParameters = "to[generic,l=$R$]";
                 Label = "R";
                 break;
             case CAPACITOR:
@@ -253,7 +252,7 @@ public class Component {
                 Label = "C";
                 break;
             case INDUCTOR:
-                latexParameters = "to[L,l=$L$]";
+                latexParameters = "to[american inductor,l=$L$]";
                 Label = "L";
                 break;
             case DIODE:
@@ -261,11 +260,11 @@ public class Component {
                 Label = "D";
                 break;
             case VOLTAGE_SOURCE:
-                latexParameters = "to[V,l=$V$]";
+                latexParameters = "to[V,i_>=$I$, v<=$U$]";
                 Label = "V";
                 break;
             case CURRENT_SOURCE:
-                latexParameters = "to[isource,l=$I$]";
+                latexParameters = "to[isource, i>=$I$]";
                 Label = "I";
                 break;
             default:

@@ -453,7 +453,7 @@ public class CircuitMaker extends JPanel {
     public String generateLatexString() {
         String output = "";
 
-        //if we're going to wrap the circuitikz in a \figure then we need to add that at the beginning
+        //if we're going to wrap the tikzpicture in a \figure then we need to add that at the beginning
         //most of the user customizations are kind of a mess since they have to be written in the figure in a 
         //specific order. 
         if (Preferences.getPreference("Wrap in Figure").equals("true")) {
@@ -464,19 +464,19 @@ public class CircuitMaker extends JPanel {
                 output += "\n";
             }
             output += "\\centering\n";
-            output += "\\begin{circuitikz}";
-            if (Preferences.getPreference("American Style Components").equals("true")) {
-                output += "[american]";
+            output += "\\begin{tikzpicture}";
+            if (Preferences.getPreference("European Style Components").equals("true")) {
+                output += "[european]";
             }
             output += "\n";
         } else {
-            output += "\\begin{circuitikz}";
-            if (Preferences.getPreference("Use [h] annotation").equals("true") && Preferences.getPreference("American Style Components").equals("true")) {
-                output += "[h, american]\n";
-            } else if (Preferences.getPreference("Use [h] annotation").equals("true") && !Preferences.getPreference("American Style Components").equals("true")) {
+            output += "\\begin{tikzpicture}";
+            if (Preferences.getPreference("Use [h] annotation").equals("true") && Preferences.getPreference("European Style Components").equals("true")) {
+                output += "[h, eruopean]\n";
+            } else if (Preferences.getPreference("Use [h] annotation").equals("true") && !Preferences.getPreference("European Style Components").equals("true")) {
                 output += "[h]\n";
-            } else if (!Preferences.getPreference("Use [h] annotation").equals("true") && Preferences.getPreference("American Style Components").equals("true")) {
-                output += "[american]\n";
+            } else if (!Preferences.getPreference("Use [h] annotation").equals("true") && Preferences.getPreference("European Style Components").equals("true")) {
+                output += "[european]\n";
             } else {
                 output += "\n";
             }
@@ -506,7 +506,7 @@ public class CircuitMaker extends JPanel {
             output += components.get(a).getLatexLine();
         }
 
-        output += "\\end{circuitikz}";
+        output += "\\end{tikzpicture}";
         if (Preferences.getPreference("Wrap in Figure").equals("true")) {
             output += "\n\\end{figure}";
         }

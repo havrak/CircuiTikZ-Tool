@@ -499,13 +499,10 @@ public class GUI extends javax.swing.JFrame {
     }
 
     private void keyHandler(java.awt.event.KeyEvent evt) {
-        System.out.print("Key pressed ");
         if (evt.getKeyCode() == KeyEvent.VK_DELETE || evt.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-            //removing items in this manner causes a bug where the list doesn't update properly since it's controlled in circuitmaker.java
+            //TODO: removing items in this manner causes a bug where the list doesn't update properly since it's controlled in circuitmaker.java
             schematicWindow.deleteSelectedComponent();
-            System.out.print("delete");
         }
-        System.out.println("");
     }
 
     /**Redraws the main circuit window on the main GUI

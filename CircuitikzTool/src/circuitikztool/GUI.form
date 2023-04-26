@@ -133,7 +133,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Component id="filler1" max="32767" attributes="0"/>
+                  <Component id="filler1" pref="177" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
